@@ -70,4 +70,9 @@
     <Title>Harry Potter</Title>
     <ISBN>123689489</ISBN>
   </Book>
+  <Book>
+    <Author>Andy Weir</Author>
+    <Title>Project Hail Mary</Title>
+    <ISBN>75326984</ISBN>
+  </Book>
 </Library>

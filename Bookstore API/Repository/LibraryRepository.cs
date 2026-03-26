@@ -29,7 +29,7 @@ namespace Bookstore_API.Repository
                 var library = (LibraryModel)xmlSerializer.Deserialize(context);
 
                 return library.Books.FirstOrDefault(x => x.ISBN.Equals(ISBN));
-            }        
+            }
         }
 
         internal List<BookModel> SearchBooks(string query)
@@ -58,9 +58,9 @@ namespace Bookstore_API.Repository
             }
         }
 
-        internal void AddBook (string author, string title, string isbn)
+        internal void AddBook(string author, string title, string isbn)
         {
-            var xmlSerializer = new XmlSerializer (typeof(LibraryModel));
+            var xmlSerializer = new XmlSerializer(typeof(LibraryModel));
 
             LibraryModel library;
 
@@ -89,6 +89,21 @@ namespace Bookstore_API.Repository
             {
                 xmlSerializer.Serialize(writer, library);
             }
+        }
+
+        internal void SuggestBook(string name, string author, string title)
+        {
+            var date = DateTime.Now.ToString("yyyy-mm-dd");
+            var folderPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Suggestions");
+
+            if (!Directory.Exists(folderPath))
+            {
+                Directory.CreateDirectory(folderPath);
+            }
+
+            var fileName = $"{name[0]}_{date}_{author[0]}";
+
+            var filePath = Path.Combine(folderPath, fileName, "txt");
         }
     }
 }

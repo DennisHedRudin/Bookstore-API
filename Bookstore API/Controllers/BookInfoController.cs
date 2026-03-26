@@ -54,5 +54,19 @@ namespace Bookstore_API.Controllers
             library.AddBook(book.Author, book.Title, book.ISBN);
             return Ok();
         }
+
+        [HttpPost]
+        public IHttpActionResult SuggestBook(string name, string author, string title)
+        {
+            if (string.IsNullOrWhiteSpace(name) ||
+                string.IsNullOrWhiteSpace(author) ||
+                string.IsNullOrWhiteSpace(title))
+            {
+                return BadRequest("All fields are required");
+            }
+
+            library.BookSuggestion(name, author, title);
+            return Ok();
+        }
     }
 }

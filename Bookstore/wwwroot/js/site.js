@@ -1,5 +1,4 @@
-﻿// Justera denna port
-const API_BASE = "http://localhost:50536/api/bookinfo"; 
+﻿const API_BASE = "http://localhost:50536/api/bookinfo"; 
 
 async function searchBooks() {
     const input = document.getElementById("searchInput");
