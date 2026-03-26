@@ -1,0 +1,16 @@
+﻿@{
+    ViewBag.Title = "Add Book";
+}
+
+
+<div class="container">
+    <h2>Add Book</h2>
+
+    <input id="authorInput" class="form-control mb-2" placeholder="Author" />
+    <input id="titleInput" class="form-control mb-2" placeholder="Title" />
+    <input id="isbnInput" class="form-control mb-2" placeholder="ISBN" />
+
+    <button class="btn btn-success" onclick="createBook()">Create Book</button>
+
+    <div id="createResult" class="mt-3"></div>
+</div>

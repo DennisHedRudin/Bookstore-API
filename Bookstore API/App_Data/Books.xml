@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Library xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Book>
+    <Author>Patrick Rothfuss</Author>
+    <Title>The Name of the Wind</Title>
+    <ISBN>9788580410631</ISBN>
+  </Book>
+  <Book>
+    <Author>Patrick Rothfuss</Author>
+    <Title>The Wise Mans Fear</Title>
+    <ISBN>9788834717790</ISBN>
+  </Book>
+  <Book>
+    <Author>Joe Abercrombie</Author>
+    <Title>The Blade Itself</Title>
+    <ISBN>9781478935797</ISBN>
+  </Book>
+  <Book>
+    <Author>Joe Abercrombie</Author>
+    <Title>Before They Are Hanged</Title>
+    <ISBN>9780316275576</ISBN>
+  </Book>
+  <Book>
+    <Author>Joe Abercrombie</Author>
+    <Title>Last Argument of Kings</Title>
+    <ISBN>9782290032954</ISBN>
+  </Book>
+  <Book>
+    <Author>Joe Abercrombie</Author>
+    <Title>Best Served Cold</Title>
+    <ISBN>9783641037789</ISBN>
+  </Book>
+  <Book>
+    <Author>Joe Abercrombie</Author>
+    <Title>The Heroes</Title>
+    <ISBN>9780575100725</ISBN>
+  </Book>
+  <Book>
+    <Author>Joe Abercrombie</Author>
+    <Title>Red Country</Title>
+    <ISBN>9788898172566</ISBN>
+  </Book>
+  <Book>
+    <Author>Joe Abercrombie</Author>
+    <Title>Half a King</Title>
+    <ISBN>9780007598229</ISBN>
+  </Book>
+  <Book>
+    <Author>Joe Abercrombie</Author>
+    <Title>Half a War</Title>
+    <ISBN>9782820524645</ISBN>
+  </Book>
+  <Book>
+    <Author>Joe Abercrombie</Author>
+    <Title>Half the World</Title>
+    <ISBN>9781490654829</ISBN>
+  </Book>
+  <Book>
+    <Author>Douglas Adams</Author>
+    <Title>the hitchhiker's guide to the galaxy</Title>
+    <ISBN>9788970137506</ISBN>
+  </Book>
+  <Book>
+    <Author>Stephen King</Author>
+    <Title>IT</Title>
+    <ISBN>1778871448</ISBN>
+  </Book>
+  <Book>
+    <Author>J.K Rowling</Author>
+    <Title>Harry Potter</Title>
+    <ISBN>123689489</ISBN>
+  </Book>
+</Library>

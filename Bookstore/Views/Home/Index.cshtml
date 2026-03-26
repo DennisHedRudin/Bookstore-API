@@ -1,0 +1,16 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="container-md">
+    <div>
+        <h1 class="display-4">Welcome</h1>
+    </div>
+    <div class="container">
+		<input class="form-control" type="text" placeholder="Search for books..." id="searchInput" aria-label="Search">
+		<button class="btn btn-primary mt-2" onclick="searchBooks()">Search</button>
+    </div>
+
+    <div id="results" class="mt-4 flex-column gap-1">       
+    </div>
+</div>
