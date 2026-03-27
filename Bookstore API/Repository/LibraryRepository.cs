@@ -36,18 +36,13 @@ namespace Bookstore_API.Repository
         /// <summary>
         /// Searches for books that match the specified query in the ISBN, author, or title fields.
         /// </summary>
-        /// <remarks>The search is performed against all books in the library database and is
-        /// case-insensitive. If the library database cannot be read or deserialized, the method returns an empty
-        /// list.</remarks>
-        /// <param name="query">The search term to use for matching books. The search is case-insensitive and matches any part of the ISBN,
-        /// author, or title. If null, empty, or whitespace, no results are returned.</param>
-        /// <returns>A list of books that match the search query. Returns an empty list if no matches are found or if an error
+        /// <returns>A list of books that match the search query. Returns an empty list if no matches are found. Returns null if an exception
         /// occurs during the search.</returns>
-        internal List<BookModel>? SearchBooks(string query)
+        internal List<BookModel>? SearchBooks(string searchQuery)
         {
             try
             {
-                if (string.IsNullOrWhiteSpace(query))
+                if (string.IsNullOrWhiteSpace(searchQuery))
                     return new List<BookModel>();
 
                 var xmlSerializer = new XmlSerializer(typeof(LibraryModel));
@@ -59,12 +54,12 @@ namespace Bookstore_API.Repository
                     if (library?.Books == null)
                         return new List<BookModel>();
 
-                    var b = query.ToLower();
+                    var s = searchQuery.ToLower();
 
                     var results = library.Books.Where(x =>
-                        x.ISBN.ToLower().Contains(b) ||
-                        x.Author.ToLower().Contains(b) ||
-                        x.Title.ToLower().Contains(b)
+                        x.ISBN.ToLower().Contains(s) ||
+                        x.Author.ToLower().Contains(s) ||
+                        x.Title.ToLower().Contains(s)
                     ).ToList();
 
                     return results;
@@ -136,10 +131,9 @@ namespace Bookstore_API.Repository
                 var date = DateTime.Now.ToString("yyyy-MM-dd");
                 var folderPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Suggestions", date);
 
-                if (!Directory.Exists(folderPath))
-                {
+                if (!Directory.Exists(folderPath))                
                     Directory.CreateDirectory(folderPath);
-                }
+                
 
                 var name = model.Name.Trim();
                 var author = model.Author.Trim();

@@ -31,15 +31,13 @@ namespace Bookstore_API.Controllers
 
             var results = library.SearchBooks(query);
 
-            if(results == null)
-            {
+            if(results == null)            
                 return BadRequest("Failed to search for books");
-            }
+            
 
-            if(results.Count == 0)
-            {
+            if(results.Count == 0)            
                 return NotFound();
-            }
+            
 
             return Ok(results);
                     
@@ -58,10 +56,9 @@ namespace Bookstore_API.Controllers
 
             var bookAdded = library.AddBook(book.Author, book.Title, book.ISBN);
 
-            if (!bookAdded)
-            {
+            if (!bookAdded)            
                 return BadRequest("failed to add book");
-            }
+            
 
             return Ok();
         }
@@ -78,10 +75,9 @@ namespace Bookstore_API.Controllers
 
             var suggestionSuccess = library.SuggestBook(suggestion);
 
-            if (!suggestionSuccess)
-            {
+            if (!suggestionSuccess)            
                 return BadRequest("Failed to submit suggestion");
-            }
+            
 
             return Ok();
         }
