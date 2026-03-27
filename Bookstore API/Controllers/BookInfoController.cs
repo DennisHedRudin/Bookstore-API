@@ -56,16 +56,16 @@ namespace Bookstore_API.Controllers
         }
 
         [HttpPost]
-        public IHttpActionResult SuggestBook(string name, string author, string title)
+        public IHttpActionResult SuggestBook(SuggestionModel suggestion)
         {
-            if (string.IsNullOrWhiteSpace(name) ||
-                string.IsNullOrWhiteSpace(author) ||
-                string.IsNullOrWhiteSpace(title))
+            if (string.IsNullOrWhiteSpace(suggestion.Name) ||
+                string.IsNullOrWhiteSpace(suggestion.Author) ||
+                string.IsNullOrWhiteSpace(suggestion.Title))
             {
                 return BadRequest("All fields are required");
             }
 
-            library.BookSuggestion(name, author, title);
+            library.SuggestBook(suggestion);
             return Ok();
         }
     }

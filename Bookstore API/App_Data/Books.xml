@@ -75,4 +75,9 @@
     <Title>Project Hail Mary</Title>
     <ISBN>75326984</ISBN>
   </Book>
+  <Book>
+    <Author>Tove Alsterdal</Author>
+    <Title>Rotvälta</Title>
+    <ISBN>9884762135</ISBN>
+  </Book>
 </Library>

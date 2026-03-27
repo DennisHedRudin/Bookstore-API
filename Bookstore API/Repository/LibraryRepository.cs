@@ -91,19 +91,32 @@ namespace Bookstore_API.Repository
             }
         }
 
-        internal void SuggestBook(string name, string author, string title)
+        internal void SuggestBook(SuggestionModel model)
         {
-            var date = DateTime.Now.ToString("yyyy-mm-dd");
-            var folderPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Suggestions");
+            var date = DateTime.Now.ToString("yyyy-MM-dd");
+            var folderPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Suggestions", date);
 
             if (!Directory.Exists(folderPath))
             {
                 Directory.CreateDirectory(folderPath);
             }
 
+            var name = model.Name.Trim();
+            var author = model.Author.Trim();
+
             var fileName = $"{name[0]}_{date}_{author[0]}";
 
-            var filePath = Path.Combine(folderPath, fileName, "txt");
+            var filePath = Path.Combine(folderPath, fileName + ".txt");
+
+            int counter = 1;
+
+            while (File.Exists(filePath))
+            {
+                filePath = Path.Combine(folderPath, $"{fileName}_{counter}.txt");
+                counter++;
+            }
+
+            File.WriteAllText(filePath, $"Name: {model.Name}\nAuthor: {model.Author}\nTitle: {model.Title}");
         }
     }
 }

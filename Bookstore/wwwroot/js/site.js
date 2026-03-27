@@ -5,7 +5,7 @@ async function searchBooks() {
     const resultDiv = document.getElementById("results");
 
     const query = input.value.trim();
-    debugger
+
     resultDiv.innerHTML = "";
 
     if (!query) {
@@ -114,3 +114,45 @@ async function createBook() {
         resultDiv.innerHTML = "<div class='alert alert-danger'>Something went wrong.</div>";
     }
 }
+
+async function suggestBook() {
+    const name = document.getElementById("nameSuggestion").value.trim();
+    const author = document.getElementById("authorSuggestion").value.trim();
+    const title = document.getElementById("titleSuggestion").value.trim();
+
+    const resultDiv = document.getElementById("suggestionResult");
+
+    if (!name || !author || !title) {
+        resultDiv.innerHTML = `<div class='alert alert-danger'>All fields required</div>`;
+        return;
+    }
+    try {
+        const response = await fetch(`${API_BASE}/suggestbook`, {
+            method: "POST", 
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                Name: name,
+                Author: author,
+                Title: title,
+            })
+        });
+
+        if (!response.ok) {
+            const errorText = await response.text()
+            resultDiv.innerHTML = `<div class='alert alert-danger'>${errorText}</div>`;
+            return
+        }
+
+        resultDiv.innerHTML = "<div class='alert alert-success'>Book added successfully!</div>";
+
+        document.getElementById("nameSuggestion").value = "";
+        document.getElementById("authorSuggestion").value = ""; 
+        document.getElementById("titleSuggestion").value = "";
+
+    } catch (error) {
+        console.error(error);
+        resultDiv.innerHTML = "<div class='alert alert-danger'>Something went wrong.</div>";
+    }
+} 
