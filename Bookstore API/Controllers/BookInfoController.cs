@@ -9,19 +9,19 @@ namespace Bookstore_API.Controllers
     public class BookInfoController : ApiController
     {
         private LibraryRepository library = new LibraryRepository();
-        [HttpGet]
-        public IHttpActionResult SearchBook(string ISBN)
-        {
-            if (string.IsNullOrWhiteSpace(ISBN))
-                return BadRequest("ISBN cannot be null or empty");
+        //[HttpGet]
+        //public IHttpActionResult SearchBook(string ISBN)
+        //{
+        //    if (string.IsNullOrWhiteSpace(ISBN))
+        //        return BadRequest("ISBN cannot be null or empty");
 
-            var book = library.GetBook(ISBN);
+        //    var book = library.GetBook(ISBN);
 
-            if (book == null)
-                return NotFound();
+        //    if (book == null)
+        //        return NotFound();
 
-            return Ok(book);
-        }
+        //    return Ok(book);
+        //}
 
         [HttpGet]
         public IHttpActionResult SearchBookWithQuery(string query)
@@ -31,7 +31,12 @@ namespace Bookstore_API.Controllers
 
             var results = library.SearchBooks(query);
 
-            if(results == null || results.Count == 0)
+            if(results == null)
+            {
+                return BadRequest("Failed to search for books");
+            }
+
+            if(results.Count == 0)
             {
                 return NotFound();
             }
@@ -51,7 +56,13 @@ namespace Bookstore_API.Controllers
                 return BadRequest("Invalid data");
             }
 
-            library.AddBook(book.Author, book.Title, book.ISBN);
+            var bookAdded = library.AddBook(book.Author, book.Title, book.ISBN);
+
+            if (!bookAdded)
+            {
+                return BadRequest("failed to add book");
+            }
+
             return Ok();
         }
 
@@ -65,7 +76,13 @@ namespace Bookstore_API.Controllers
                 return BadRequest("All fields are required");
             }
 
-            library.SuggestBook(suggestion);
+            var suggestionSuccess = library.SuggestBook(suggestion);
+
+            if (!suggestionSuccess)
+            {
+                return BadRequest("Failed to submit suggestion");
+            }
+
             return Ok();
         }
     }
